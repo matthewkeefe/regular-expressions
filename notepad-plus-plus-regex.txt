@@ -1,0 +1,18 @@
+Parse Outlook Names and Emails 
+    example: 
+        convert: "First1 Last1 <first1.last1@gmail.com>; First2 Last2 <first2.last2@gmail.com>;"
+        to: "First1 Last1 (first1.last1@gmail.com)\r\nFirst2 Last2 (first2.last2@gmail.com)"
+FIND: ^([^, ]*),+ +([^\&lt;]*)[\&lt;]+([^\&gt;]*)[\&gt;]+[ ]*$
+REPLACE: $2$1 \($3\)
+
+Parse Outlook Names
+    example: convert: "First1 Last1 <first1.last1@gmail.com>; First2 Last2 <first2.last2@gmail.com>;"
+    to: "First1 Last1\r\nFirst2 Last2"
+FIND: ^([^, ]*),+ +([^\&lt;]*)[\&lt;]+([^\&gt;]*)[\&gt;]+[ ]*$
+REPLACE: $2$1
+
+Parse Outlook Emails
+    example: convert: "First1 Last1 <first1.last1@gmail.com>; First2 Last2 <first2.last2@gmail.com>;"
+    to: "first1.last1@gmail.com\r\nfirst2.last2@gmail.com"
+FIND: ^([^, ]*),+ +([^\&lt;]*)[\&lt;]+([^\&gt;]*)[\&gt;]+[ ]*$
+REPLACE: $3
